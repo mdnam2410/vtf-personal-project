@@ -208,9 +208,9 @@ MonoBehaviour:
   OnWalking:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1252965959}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AutomaticGun, Assembly-CSharp
-        m_MethodName: OnWalking
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -223,9 +223,9 @@ MonoBehaviour:
   OnStopWalking:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1252965959}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AutomaticGun, Assembly-CSharp
-        m_MethodName: OnStopWalking
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -238,9 +238,9 @@ MonoBehaviour:
   OnRunning:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1252965959}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AutomaticGun, Assembly-CSharp
-        m_MethodName: OnRunning
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -253,9 +253,9 @@ MonoBehaviour:
   OnStopRunning:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1252965959}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AutomaticGun, Assembly-CSharp
-        m_MethodName: OnStopRunning
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -733,6 +733,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1252965958}
+  _ammo: {fileID: 1252965962}
+--- !u!114 &1252965961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252965957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d2e2eab0d2ff42a52beb3ead576d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1252965958}
+  _ammo: {fileID: 1252965962}
+--- !u!114 &1252965962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252965957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a76ee4d3fb11a48999e59cd1fd214d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _magazineSize: 10
+  _maxAmmo: 30
+  <LoadedAmmo>k__BackingField: 0
+  <RemainingAmmo>k__BackingField: 0
 --- !u!1 &1284722773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100012, guid: 56ec0b9a5b8762642811ea26a5242e04, type: 3}
@@ -761,6 +792,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1284722775}
+  _ammo: {fileID: 0}
+--- !u!114 &1284722777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284722773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d2e2eab0d2ff42a52beb3ead576d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1284722775}
+  _ammo: {fileID: 0}
+--- !u!114 &1284722778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284722773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a76ee4d3fb11a48999e59cd1fd214d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _magazineSize: 5
+  _maxAmmo: 15
+  <LoadedAmmo>k__BackingField: 0
+  <RemainingAmmo>k__BackingField: 0
 --- !u!1001 &1468805136
 PrefabInstance:
   m_ObjectHideFlags: 0
