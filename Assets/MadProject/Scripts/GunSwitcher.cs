@@ -14,10 +14,12 @@ public class GunSwitcher : MonoBehaviour
     {
         _previousGunIndex = -1;
         _currentGunIndex = (_guns == null || _guns.Length == 0) ? -1 : 0;
+        AssignGunBehaviours();
     }
 
     private void Update()
     {
+        Debug.Log($"{_currentGunIndex} {_previousGunIndex}");
         bool hasChange = false;
         for (int i = 0; i < _guns.Length; ++i)
         {
@@ -46,10 +48,13 @@ public class GunSwitcher : MonoBehaviour
 
     private void UpdateGunBehaviours()
     {
-        if (_currentGunIndex == -1) return;
-
         RemoveListernersOfPreviousGun();
+        AssignGunBehaviours();
+    }
 
+    private void AssignGunBehaviours()
+    {
+        if (_currentGunIndex == -1) return;
         GameObject _currentGun = _guns[_currentGunIndex];
         GunBehaviour _currentGunBehaviour = _currentGun.GetComponent<GunBehaviour>();
         FPSMoveController _moveController = GetComponent<FPSMoveController>();
@@ -64,6 +69,7 @@ public class GunSwitcher : MonoBehaviour
     {
         if (_previousGunIndex == -1)
             return;
+
         GameObject _previousGun = _guns[_currentGunIndex];
         GunBehaviour _previousGunBehaviour = _previousGun.GetComponent<GunBehaviour>();
         FPSMoveController _moveController = GetComponent<FPSMoveController>();

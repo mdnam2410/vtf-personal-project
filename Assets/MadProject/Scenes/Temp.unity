@@ -716,7 +716,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1252965957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d228917b9f50ad498dd541806bf4acb, type: 3}
+  m_Script: {fileID: 11500000, guid: 27f6ea326c98b2e4da42bd99bb7eca82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1252965958}
@@ -746,8 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2d2e2eab0d2ff42a52beb3ead576d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1252965958}
   _ammo: {fileID: 1252965962}
+  _animator: {fileID: 1252965958}
 --- !u!114 &1252965962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +764,9 @@ MonoBehaviour:
   _maxAmmo: 30
   <LoadedAmmo>k__BackingField: 0
   <RemainingAmmo>k__BackingField: 0
+  OnAmmoChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1284722773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100012, guid: 56ec0b9a5b8762642811ea26a5242e04, type: 3}
@@ -792,7 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1284722775}
-  _ammo: {fileID: 0}
+  _ammo: {fileID: 1284722778}
 --- !u!114 &1284722777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,8 +808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2d2e2eab0d2ff42a52beb3ead576d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ammo: {fileID: 1284722778}
   _animator: {fileID: 1284722775}
-  _ammo: {fileID: 0}
 --- !u!114 &1284722778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +826,22 @@ MonoBehaviour:
   _maxAmmo: 15
   <LoadedAmmo>k__BackingField: 0
   <RemainingAmmo>k__BackingField: 0
+  OnAmmoChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1284722779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284722773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f6ea326c98b2e4da42bd99bb7eca82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1284722775}
 --- !u!1001 &1468805136
 PrefabInstance:
   m_ObjectHideFlags: 0

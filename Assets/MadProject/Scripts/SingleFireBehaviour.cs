@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleFireBehaviour : GunBehaviour
+public class SingleFireBehaviour : MonoBehaviour
 {
-    //[SerializeField]
-    //private Animator _animator;
-
+    [SerializeField]
+    private Animator _animator;
     [SerializeField]
     private Ammo _ammo;
 
@@ -16,9 +15,8 @@ public class SingleFireBehaviour : GunBehaviour
         _ammo = GetComponent<Ammo>();
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();

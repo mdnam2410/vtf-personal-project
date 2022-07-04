@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReloadBehaviour : GunBehaviour
+public class ReloadBehaviour : MonoBehaviour
 {
     [SerializeField]
     private Ammo _ammo;
+    [SerializeField]
+    protected Animator _animator;
+
 
     private int ReloadTrigger = Animator.StringToHash("Reload");
     private int OutOfAmmo = Animator.StringToHash("OutOfAmmo");
 
     private void OnValidate()
     {
+        _animator = GetComponent<Animator>();
         _ammo = GetComponent<Ammo>();
         _ammo.OnAmmoChange.AddListener(CheckOutOfAmmo);
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
         if (Input.GetKeyDown(KeyCode.R) && _ammo.CanReload())
         {
             _animator.SetTrigger(ReloadTrigger);

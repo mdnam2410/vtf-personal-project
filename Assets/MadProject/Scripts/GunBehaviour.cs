@@ -18,7 +18,7 @@ public class GunBehaviour : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    protected virtual void Update()
+    private void Update()
     {
         _animator.SetBool(IsWalkingParameter, _isWalking);
         _animator.SetBool(IsRunningParameter, _isRunning);
