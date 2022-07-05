@@ -34,7 +34,7 @@ public class Ammo : MonoBehaviour
         OnAmmoChange.Invoke();
     }
 
-    public void OnReload()
+    public void Reload()
     {
         if (!CanReload()) return;
         int requiredAmmo = _magazineSize - LoadedAmmo;
