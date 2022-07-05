@@ -29,8 +29,19 @@ public class ZombieAI : MonoBehaviour
         _behaviorTree.EnableBehavior();
     }
 
+    public void OnReceivingDamage()
+    {
+        _behaviorTree.SendEvent("Event_ReceiveDamage");
+    }
+
     public void OnDeath()
     {
         _behaviorTree.SendEvent("IsDead");
+    }
+
+    public GameObject CurrentTarget()
+    {
+        var target = _behaviorTree.GetVariable("CurrentTarget") as SharedGameObject;
+        return target.Value;
     }
 }
