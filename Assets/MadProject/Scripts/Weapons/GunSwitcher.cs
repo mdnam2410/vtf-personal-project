@@ -55,7 +55,7 @@ public class GunSwitcher : MonoBehaviour
     {
         if (_currentGunIndex == -1) return;
         GameObject _currentGun = _guns[_currentGunIndex];
-        GunBehaviour _currentGunBehaviour = _currentGun.GetComponent<GunBehaviour>();
+        MoveBehaviour _currentGunBehaviour = _currentGun.GetComponent<MoveBehaviour>();
         FPSMoveController _moveController = GetComponent<FPSMoveController>();
 
         _moveController.OnWalking.AddListener(_currentGunBehaviour.OnWalking);
@@ -70,7 +70,7 @@ public class GunSwitcher : MonoBehaviour
             return;
 
         GameObject _previousGun = _guns[_currentGunIndex];
-        GunBehaviour _previousGunBehaviour = _previousGun.GetComponent<GunBehaviour>();
+        MoveBehaviour _previousGunBehaviour = _previousGun.GetComponent<MoveBehaviour>();
         FPSMoveController _moveController = GetComponent<FPSMoveController>();
 
         _moveController.OnWalking.RemoveListener(_previousGunBehaviour.OnWalking);

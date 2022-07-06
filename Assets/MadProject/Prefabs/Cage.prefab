@@ -203,9 +203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a75dcfb614c5dd42b83b1d14a189434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 1000
-  CurrentHP: 1000
+  MaxHP: 10
+  CurrentHP: 10
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathWithGameObject:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &9139698118121092930

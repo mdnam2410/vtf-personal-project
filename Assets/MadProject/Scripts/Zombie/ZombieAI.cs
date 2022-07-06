@@ -8,6 +8,8 @@ public class ZombieAI : MonoBehaviour
 {
     [SerializeField]
     private BehaviorTree _behaviorTree;
+    [SerializeField]
+    private Animator _animator;
 
     private int PlayerLayer = 7;
     private int VictimLayer = 8;
@@ -18,6 +20,7 @@ public class ZombieAI : MonoBehaviour
     private void OnValidate()
     {
         _behaviorTree = GetComponent<BehaviorTree>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()

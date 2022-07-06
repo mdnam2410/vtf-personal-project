@@ -10,10 +10,20 @@ public class ZombieManager : MonoBehaviour
     private Transform _spawningPlane;
     [SerializeField]
     private int _maxZombies;
-    
+    public int MaxZombies
+    {
+        get => _maxZombies;
+        private set { }
+    }
+
     private Queue<GameObject> _unusedZombies = new Queue<GameObject>();
     private List<GameObject> _aliveZombies = new List<GameObject>();
     private Queue<GameObject> _deadZombies = new Queue<GameObject>();
+    public int DeadZombiesCount
+    {
+        get => _deadZombies.Count;
+        private set { }
+    }
 
     private void Start()
     {
@@ -33,7 +43,7 @@ public class ZombieManager : MonoBehaviour
     {
         var zombie = Instantiate(_zombiePrefab[0], GetRandomPosition(), GetRandomRotation());
         zombie.SetActive(false);
-        zombie.GetComponent<HP>().OnDeathWithGameObject.AddListener(OnZombieDies);
+        //zombie.GetComponent<HP>().OnDeathWithGameObject.AddListener(OnZombieDies);
         _unusedZombies.Enqueue(zombie);
     }
 
@@ -68,7 +78,7 @@ public class ZombieManager : MonoBehaviour
         yield break;
     }
 
-    public void OnZombieDies(GameObject zombie)
+    public void RemoveZombie(GameObject zombie)
     {
         Debug.Log($"{zombie.name} dies");
         _aliveZombies.Remove(zombie);

@@ -33,7 +33,6 @@ public class DamageDelivery : MonoBehaviour
     private void InspectHitInfo(RaycastHit hitInfo)
     {
         GameObject hitGameObject = hitInfo.collider.gameObject;
-        Debug.Log($"{hitGameObject.layer} {hitGameObject.name}");
         if (hitGameObject.layer == ZombieLayer)
         {
             //var hp = hitGameObject.GetComponent<HP>();

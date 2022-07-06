@@ -1,43 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class SemiAutomaticFireBehaviour : MonoBehaviour
+public class SemiAutomaticFireBehaviour : Shooting
 {
-    [SerializeField]
-    private Animator _animator;
-    [SerializeField]
-    private Ammo _ammo;
-    [SerializeField]
-    private AudioSource _fireSound;
-
-    public UnityEvent OnShoot;
-
-    private void OnValidate()
-    {
-        _animator = GetComponent<Animator>();
-        _ammo = GetComponent<Ammo>();
-    }
+    private bool _isShooting;
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (_isShooting) return;
+        if (Input.GetButtonDown("Fire1") && !Locked)
         {
             Shoot();
         }
     }
 
-    private void Shoot()
+    protected override void Shoot()
     {
-        if (_ammo.LoadedAmmo == 0) return;
-        _animator.SetTrigger("Fire");
-        _ammo.OnShoot();
-        OnShoot.Invoke();
+        _isShooting = true;
+        base.Shoot();
     }
 
-    public void PlayFireSound()
+    public void FinishShooting()
     {
-        _fireSound.Play();
+        Debug.Log("Finished shooting");
+        _isShooting = false;
     }
 }
