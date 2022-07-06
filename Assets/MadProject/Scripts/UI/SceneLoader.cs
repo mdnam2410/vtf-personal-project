@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SceneLoader : MonoSingleton<SceneLoader>
 {
     [SerializeField]
+    private GameObject _canvas;
+    [SerializeField]
     private GameObject _playButton;
 
     private void Start()
@@ -17,14 +19,14 @@ public class SceneLoader : MonoSingleton<SceneLoader>
     private void CreateNewGame()
     {
         LoadGameScene();
-        _playButton.SetActive(false);
+        _canvas.SetActive(false);
         Time.timeScale = 1;
     }
 
     public void ReturnToMainMenu()
     {
         LoadMainMenuScene();
-        _playButton.SetActive(true);
+        _canvas.SetActive(true);
     }
 
     public static void LoadGameScene()
