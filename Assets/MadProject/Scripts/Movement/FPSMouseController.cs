@@ -1,56 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class FPSMouseController : MonoBehaviour
+public class FPSMouseController : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField]
-    private float _mouseSensitivity = 1;
+    private float _mouseSensitivity = 0.001f;
     [SerializeField]
     private Transform _cameraHolder;
     [SerializeField]
     private float _minPitch = -60;
     [SerializeField]
     private float _maxPitch = 60;
+    [SerializeField]
+    private float _smoothFactor = 5f;
+    [SerializeField]
+    private float _multiplier = 5f;
+
+    private bool _isRotating;
+    private Vector2 _startTouchPosition;
+
+    private Vector3 _startYaw;
+    private Vector3 _startPitch;
+    private Vector3 _desiredYaw;
+    private Vector3 _desiredPitch;
+    
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        _desiredYaw = transform.rotation.eulerAngles;
+        _desiredPitch = _cameraHolder.localEulerAngles;
     }
 
     private void Update()
     {
-        UpdateYaw();
-        UpdatePitch();
-    }
-
-    private void UpdateYaw()
-    {
-        float mouseDeltaX = Input.GetAxisRaw("Mouse X");
-        float yawAngle = mouseDeltaX * _mouseSensitivity;
-        transform.Rotate(0, yawAngle, 0);
-    }
-
-    private void UpdatePitch()
-    {
-        float mouseDeltaY = Input.GetAxisRaw("Mouse Y");
-        float pitchAngle = -mouseDeltaY * _mouseSensitivity;
-        _cameraHolder.Rotate(pitchAngle, 0, 0);
-        ClampPitchAngle();
-    }
-
-    private void ClampPitchAngle()
-    {
-        Vector3 pitchAngle = _cameraHolder.localEulerAngles;
-        while (pitchAngle.x > 180)
+        if (_isRotating)
         {
-            pitchAngle.x -= 360;
+            transform.localRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(_desiredYaw), _smoothFactor * Time.unscaledDeltaTime);
+            _cameraHolder.localRotation = Quaternion.Lerp(_cameraHolder.localRotation, Quaternion.Euler(_desiredPitch), _smoothFactor * Time.unscaledDeltaTime);
         }
+    }
 
-        while (pitchAngle.x < -180)
+    public void OnBeginDrag(PointerEventData pointerEventData)
+    {
+        _isRotating = true;
+        _startTouchPosition = pointerEventData.position;
+
+        _startYaw = transform.rotation.eulerAngles;
+        _startPitch = _cameraHolder.localEulerAngles;
+    }
+
+    public void OnDrag(PointerEventData pointerEventData)
+    {
+        var deltaTouchPosition = (pointerEventData.position - _startTouchPosition) / Screen.dpi;
+        var deltaAngle = deltaTouchPosition * _multiplier;
+
+        _desiredYaw.y = SimplifyAngle(_startYaw.y + deltaAngle.x);
+        _desiredPitch.x = SimplifyAngle(_startPitch.x - deltaAngle.y);
+        _desiredPitch.x = Mathf.Clamp(_desiredPitch.x, _minPitch, _maxPitch);
+    }
+
+    public void OnEndDrag(PointerEventData pointerEventData)
+    {
+        _isRotating = false;
+    }
+
+    private float SimplifyAngle(float angle)
+    {
+        while (angle >= 180)
         {
-            pitchAngle.x += 360;
+            angle -= 360;
         }
-        pitchAngle.x = Mathf.Clamp(pitchAngle.x, _minPitch, _maxPitch);
-        _cameraHolder.localEulerAngles = pitchAngle;
+        while (angle <= -180)
+        {
+            angle += 360;
+        }
+        return angle;
     }
 }
