@@ -19,6 +19,11 @@ public class HealthBar : MonoBehaviour
         _hp = GetComponent<HP>();
     }
 
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
+
     private void Update()
     {
         UpdateHealthBarValue();

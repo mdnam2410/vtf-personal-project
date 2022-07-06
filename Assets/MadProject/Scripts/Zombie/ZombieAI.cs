@@ -9,9 +9,11 @@ public class ZombieAI : MonoBehaviour
     [SerializeField]
     private BehaviorTree _behaviorTree;
 
+    private int PlayerLayer = 7;
+    private int VictimLayer = 8;
     private SharedFloat _speed;
     private SharedFloat _fieldOfView;
-    private GameObject _currentTarget;
+    private SharedGameObjectList _targets;
 
     private void OnValidate()
     {
@@ -22,11 +24,29 @@ public class ZombieAI : MonoBehaviour
     {
         _speed = _behaviorTree.GetVariable("Speed") as SharedFloat;
         _fieldOfView = _behaviorTree.GetVariable("FieldOfView") as SharedFloat;
+        _targets = _behaviorTree.GetVariable("Targets") as SharedGameObjectList;
 
         _speed.Value = 1;
         _fieldOfView.Value = 90;
+        _targets.Value = FindTargets();
 
         _behaviorTree.EnableBehavior();
+    }
+
+    private List<GameObject> FindTargets()
+    {
+        var objects = FindObjectsOfType<GameObject>();
+        if (objects == null) return null;
+
+        List<GameObject> targets = new List<GameObject>();
+        for (int i = 0; i < objects.Length; ++i)
+        {
+            if (objects[i].layer == PlayerLayer || objects[i].layer == VictimLayer)
+            {
+                targets.Add(objects[i]);
+            }
+        }
+        return targets;
     }
 
     public void OnReceivingDamage()
