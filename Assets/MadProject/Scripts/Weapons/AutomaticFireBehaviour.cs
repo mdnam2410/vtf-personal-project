@@ -52,4 +52,8 @@ public class AutomaticFireBehaviour : Shooting
         _ammo.Shoot();
         OnShoot.Invoke();
     }
+
+    public void FinishShooting()
+    {
+    }
 }
