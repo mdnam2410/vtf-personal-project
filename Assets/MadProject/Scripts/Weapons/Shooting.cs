@@ -11,6 +11,12 @@ public class Shooting : MonoBehaviour
     protected Ammo _ammo;
     [SerializeField]
     protected AudioSource _fireSound;
+    [SerializeField]
+    protected GameObject _shootButton;
+
+
+    protected bool _fireButtonDown;
+    protected bool _fireButtonUp;
 
     public UnityEvent OnShoot;
 
@@ -28,6 +34,12 @@ public class Shooting : MonoBehaviour
         {
             _locked = value;
         }
+    }
+
+    protected void UpdateButtonState()
+    {
+        _fireButtonDown = _shootButton.GetComponent<PressDetector>().Pressed;
+        _fireButtonUp = !_fireButtonDown;
     }
 
     protected virtual void Shoot()

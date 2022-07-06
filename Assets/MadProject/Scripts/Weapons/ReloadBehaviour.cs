@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReloadBehaviour : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class ReloadBehaviour : MonoBehaviour
     private AudioSource _reloadAmmoLeftSound;
     [SerializeField]
     private AudioSource _reloadOutOfAmmoSound;
+    [SerializeField]
+    private Button _reloadButton;
 
     private int ReloadTrigger = Animator.StringToHash("Reload");
     private bool _isReloading;
+    private bool _buttonPressed;
 
     private void OnValidate()
     {
@@ -25,10 +29,15 @@ public class ReloadBehaviour : MonoBehaviour
         _ammo = GetComponent<Ammo>();
     }
 
+    private void Start()
+    {
+        _reloadButton.onClick.AddListener(OnClick);
+    }
+
     private void Update()
     {
         if (_isReloading) return;
-        if (Input.GetKeyDown(KeyCode.R) && _ammo.CanReload())
+        if (_buttonPressed && _ammo.CanReload())
         {
             Reload();
         }
@@ -40,6 +49,11 @@ public class ReloadBehaviour : MonoBehaviour
         _isReloading = true;
         _shooter.Lock();
         _ammo.Reload();
+    }
+
+    private void OnClick()
+    {
+        _buttonPressed = true;
     }
 
     public void PlayReloadAmmoLeft()
@@ -57,5 +71,6 @@ public class ReloadBehaviour : MonoBehaviour
         Debug.Log("Finished reloading");
         _isReloading = false;
         _shooter.Unlock();
+        _buttonPressed = false;
     }
 }

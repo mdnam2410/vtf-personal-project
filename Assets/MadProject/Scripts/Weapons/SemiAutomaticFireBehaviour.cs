@@ -8,8 +8,9 @@ public class SemiAutomaticFireBehaviour : Shooting
 
     private void Update()
     {
+        UpdateButtonState();
         if (_isShooting) return;
-        if (Input.GetButtonDown("Fire1") && !Locked)
+        if (_fireButtonDown && !Locked)
         {
             Shoot();
         }

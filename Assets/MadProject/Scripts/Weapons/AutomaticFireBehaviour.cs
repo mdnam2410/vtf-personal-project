@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class AutomaticFireBehaviour : Shooting
 {
     [SerializeField]
     private float _rpm;
+
     private float Interval
     {
         get => 60 / _rpm;
@@ -17,11 +19,12 @@ public class AutomaticFireBehaviour : Shooting
 
     private void Update()
     {
-        if (Input.GetButtonUp("Fire1") || _ammo.LoadedAmmo == 0)
+        UpdateButtonState();
+        if (_fireButtonUp || _ammo.LoadedAmmo == 0)
         {
             _isFiring = false;
         }
-        else if (Input.GetButtonDown("Fire1"))
+        else if (_fireButtonDown)
         {
             _isFiring = true;
         }
@@ -31,6 +34,7 @@ public class AutomaticFireBehaviour : Shooting
             UpdateFiring();
         }
     }
+
 
     private void UpdateFiring()
     {

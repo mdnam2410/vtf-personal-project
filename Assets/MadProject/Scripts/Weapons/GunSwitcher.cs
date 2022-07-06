@@ -1,39 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunSwitcher : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _guns;
+    [SerializeField]
+    private Button _switchButton;
 
     private int _previousGunIndex;
     private int _currentGunIndex;
+    private bool _changed = false;
 
     private void Start()
     {
         _previousGunIndex = -1;
         _currentGunIndex = (_guns == null || _guns.Length == 0) ? -1 : 0;
+        _switchButton.onClick.AddListener(OnSwitchButtonClick);
         AssignGunBehaviours();
     }
 
     private void Update()
     {
-        bool hasChange = false;
-        for (int i = 0; i < _guns.Length; ++i)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
-            {
-                if (i != _currentGunIndex)
-                {
-                    hasChange = true;
-                    SwitchToGun(i);
-                }
-            }
-        }
+        //bool hasChange = false;
+        //for (int i = 0; i < _guns.Length; ++i)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+        //    {
+        //        if (i != _currentGunIndex)
+        //        {
+        //            hasChange = true;
+        //            SwitchToGun(i);
+        //        }
+        //    }
+        //}
 
-        if (hasChange)
-            UpdateGunBehaviours();
+        if (!_changed) return;
+
+        // Switch to next gun, wrap around at the end
+        SwitchToGun((_currentGunIndex + 1) % _guns.Length);
+        UpdateGunBehaviours();
+        _changed = false;
+    }
+
+    private void OnSwitchButtonClick()
+    {
+        //_previousGunIndex = _currentGunIndex;
+        //_currentGunIndex = (_currentGunIndex + 1) % _guns.Length;
+        _changed = true;
     }
 
     private void SwitchToGun(int index)
