@@ -10,7 +10,7 @@ public class SemiAutomaticFireBehaviour : Shooting
     {
         UpdateButtonState();
         if (_isShooting) return;
-        if (_fireButtonDown && !Locked)
+        if (_shootButtonDown && !Locked)
         {
             Shoot();
         }

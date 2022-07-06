@@ -18,11 +18,9 @@ public class MonoSingleton<T> : MonoBehaviour where T: MonoBehaviour
         }
         private set {}
     }
-    
 
     private void Awake()
     {
-        // DontDestroyOnLoad(this);
         if (s_instance == null)
         {
             AssignSingleton((T) (MonoBehaviour) this);

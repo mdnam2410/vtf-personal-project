@@ -27,7 +27,7 @@ public class GameLogic : MonoBehaviour
         bool victory = false;
 
         // Player is killed
-        if (_player.GetComponent<HP>().CurrentHP == 0)
+        if (_player.GetComponent<Health>().CurrentHP == 0)
         {
             _gameEnd = true;
         }
@@ -42,7 +42,7 @@ public class GameLogic : MonoBehaviour
             // All victims are killed
             for (int i = 0; i < _victims.Count; ++i)
             {
-                if (_victims[i].GetComponent<HP>().CurrentHP == 0)
+                if (_victims[i].GetComponent<Health>().CurrentHP == 0)
                 {
                     victory = false;
                     _gameEnd = true;

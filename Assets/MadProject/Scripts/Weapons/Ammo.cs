@@ -13,14 +13,14 @@ public class Ammo : MonoBehaviour
     private int _magazineSize;
     [SerializeField]
     private int _maxAmmo;
-
-    private int OutOfAmmo = Animator.StringToHash("OutOfAmmo");
-
     [field:SerializeField]
     public int LoadedAmmo { get; private set; }
     [field:SerializeField]
+    
     public int RemainingAmmo { get; private set; }
     public UnityEvent OnAmmoChange;
+    
+    private int OutOfAmmoParamter = Animator.StringToHash("OutOfAmmo");
 
     private void OnValidate()
     {
@@ -42,7 +42,7 @@ public class Ammo : MonoBehaviour
     private void CheckOutOfAmmo()
     {
         bool outOfAmmo = LoadedAmmo == 0;
-        _animator.SetBool(OutOfAmmo, outOfAmmo);
+        _animator.SetBool(OutOfAmmoParamter, outOfAmmo);
         if (outOfAmmo)
         {
             _shooter.Lock();

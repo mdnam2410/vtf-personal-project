@@ -43,7 +43,6 @@ public class ZombieManager : MonoBehaviour
     {
         var zombie = Instantiate(_zombiePrefab[0], GetRandomPosition(), GetRandomRotation());
         zombie.SetActive(false);
-        //zombie.GetComponent<HP>().OnDeathWithGameObject.AddListener(OnZombieDies);
         _unusedZombies.Enqueue(zombie);
     }
 
@@ -68,7 +67,6 @@ public class ZombieManager : MonoBehaviour
     {
         while (_unusedZombies.Count > 0)
         {
-            Debug.Log("Spawned zombie");
             var zombie = _unusedZombies.Dequeue();
             zombie.SetActive(true);
             _aliveZombies.Add(zombie);

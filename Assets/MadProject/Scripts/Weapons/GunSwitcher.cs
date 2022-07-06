@@ -24,19 +24,6 @@ public class GunSwitcher : MonoBehaviour
 
     private void Update()
     {
-        //bool hasChange = false;
-        //for (int i = 0; i < _guns.Length; ++i)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Alpha1 + i))
-        //    {
-        //        if (i != _currentGunIndex)
-        //        {
-        //            hasChange = true;
-        //            SwitchToGun(i);
-        //        }
-        //    }
-        //}
-
         if (!_changed) return;
 
         // Switch to next gun, wrap around at the end
@@ -47,8 +34,6 @@ public class GunSwitcher : MonoBehaviour
 
     private void OnSwitchButtonClick()
     {
-        //_previousGunIndex = _currentGunIndex;
-        //_currentGunIndex = (_currentGunIndex + 1) % _guns.Length;
         _changed = true;
     }
 

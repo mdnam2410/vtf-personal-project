@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField]
-    private HP _hp;
+    private Health _hp;
     [SerializeField]
     private Image _barImage;
     [SerializeField]
@@ -16,7 +16,7 @@ public class HealthBar : MonoBehaviour
 
     private void OnValidate()
     {
-        _hp = GetComponent<HP>();
+        _hp = GetComponent<Health>();
     }
 
     private void Start()

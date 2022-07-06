@@ -20,11 +20,11 @@ public class AutomaticFireBehaviour : Shooting
     private void Update()
     {
         UpdateButtonState();
-        if (_fireButtonUp || _ammo.LoadedAmmo == 0)
+        if (_shootButtonUp || _ammo.LoadedAmmo == 0)
         {
             _isFiring = false;
         }
-        else if (_fireButtonDown)
+        else if (_shootButtonDown)
         {
             _isFiring = true;
         }
@@ -34,7 +34,6 @@ public class AutomaticFireBehaviour : Shooting
             UpdateFiring();
         }
     }
-
 
     private void UpdateFiring()
     {

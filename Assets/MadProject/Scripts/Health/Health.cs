@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HP : MonoBehaviour
+public class Health : MonoBehaviour
 {
     public int MaxHP;
     public int CurrentHP;

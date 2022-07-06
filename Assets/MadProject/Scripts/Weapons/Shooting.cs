@@ -14,9 +14,8 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     protected GameObject _shootButton;
 
-
-    protected bool _fireButtonDown;
-    protected bool _fireButtonUp;
+    protected bool _shootButtonDown;
+    protected bool _shootButtonUp;
 
     public UnityEvent OnShoot;
 
@@ -38,8 +37,8 @@ public class Shooting : MonoBehaviour
 
     protected void UpdateButtonState()
     {
-        _fireButtonDown = _shootButton.GetComponent<PressDetector>().Pressed;
-        _fireButtonUp = !_fireButtonDown;
+        _shootButtonDown = _shootButton.GetComponent<PressDetector>().Pressed;
+        _shootButtonUp = !_shootButtonDown;
     }
 
     protected virtual void Shoot()

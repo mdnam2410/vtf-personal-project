@@ -12,7 +12,7 @@ public class DamageTaking : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        var hp = GetComponent<HP>();
+        var hp = GetComponent<Health>();
         if (hp == null) return;
 
         if (hp.ReduceHP(damage))
@@ -23,7 +23,7 @@ public class DamageTaking : MonoBehaviour
 
     public void TakeDamage(RaycastHit hitInfo, int damage)
     {
-        var hp = GetComponent<HP>();
+        var hp = GetComponent<Health>();
         bool notDead = hp.ReduceHP(damage);
         if (notDead)
         {

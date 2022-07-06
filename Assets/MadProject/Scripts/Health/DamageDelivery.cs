@@ -8,8 +8,6 @@ public class DamageDelivery : MonoBehaviour
     private Transform _aimingCamera;
     [SerializeField]
     private GameObject _hitEffectPrefab;
-    //[SerializeField]
-    //private GameObject _bloodSplatterPrefab;
     [SerializeField]
     private int _damage;
 
@@ -35,10 +33,6 @@ public class DamageDelivery : MonoBehaviour
         GameObject hitGameObject = hitInfo.collider.gameObject;
         if (hitGameObject.layer == ZombieLayer)
         {
-            //var hp = hitGameObject.GetComponent<HP>();
-            //bool notDead = hp.ReduceHP(_damage);
-            //if (notDead)
-            //    CreateBloodSplatter(hitInfo);
             hitGameObject.GetComponent<DamageTaking>().TakeDamage(hitInfo, _damage);
         }
     }
@@ -48,11 +42,4 @@ public class DamageDelivery : MonoBehaviour
         if (_hitEffectPrefab != null)
             Instantiate(_hitEffectPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
     }
-
-    //private void CreateBloodSplatter(RaycastHit hitInfo)
-    //{
-    //    if (_bloodSplatterPrefab != null)
-    //        Instantiate(_bloodSplatterPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-    //}
-
 }

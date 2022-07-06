@@ -20,7 +20,6 @@ public class DeadBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.enabled = false;
-        Debug.Log($"{animator.gameObject.name} {animator.gameObject.GetComponent<Animator>().enabled}");
         FindObjectOfType<ZombieManager>().RemoveZombie(animator.gameObject);
     }
 
