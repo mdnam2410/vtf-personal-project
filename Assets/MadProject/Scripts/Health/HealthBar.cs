@@ -12,6 +12,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     private Camera _camera;
 
+    public bool isWorldSpace = true;
+
     private void OnValidate()
     {
         _hp = GetComponent<HP>();
@@ -20,7 +22,8 @@ public class HealthBar : MonoBehaviour
     private void Update()
     {
         UpdateHealthBarValue();
-        LookAtCamera();
+        if (isWorldSpace)
+            LookAtCamera();
     }
 
     private void UpdateHealthBarValue()
