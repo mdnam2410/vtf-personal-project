@@ -16,7 +16,7 @@ public class FPSMouseController : MonoBehaviour, IDragHandler, IBeginDragHandler
     [SerializeField]
     private float _smoothFactor = 5f;
     [SerializeField]
-    private float _multiplier = 5f;
+    private float _touchSensitivity = 8f;
 
     private bool _isRotating;
     private Vector2 _startTouchPosition;
@@ -53,7 +53,7 @@ public class FPSMouseController : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void OnDrag(PointerEventData pointerEventData)
     {
         var deltaTouchPosition = (pointerEventData.position - _startTouchPosition) / Screen.dpi;
-        var deltaAngle = deltaTouchPosition * _multiplier;
+        var deltaAngle = deltaTouchPosition * _touchSensitivity;
 
         _desiredYaw.y = SimplifyAngle(_startYaw.y + deltaAngle.x);
         _desiredPitch.x = SimplifyAngle(_startPitch.x - deltaAngle.y);

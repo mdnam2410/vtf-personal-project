@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 256
+  m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0.431
   m_CustomReflection: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
@@ -10704,6 +10704,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8024760966872472367, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
+      propertyPath: _multiplier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8024760966872472367, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
+      propertyPath: _touchSensitivity
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8024760966872472370, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11249,6 +11257,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8024760968497989333, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
+      propertyPath: _shooter
+      value: 
+      objectReference: {fileID: 244220363}
+    - target: {fileID: 8024760968497989333, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
       propertyPath: _reloadButton
       value: 
       objectReference: {fileID: 1694827307}
@@ -11264,6 +11276,10 @@ PrefabInstance:
       propertyPath: _maxAmmo
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 8024760968497989334, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
+      propertyPath: _shooter
+      value: 
+      objectReference: {fileID: 244220363}
     - target: {fileID: 8024760968497989334, guid: c8df3ff6385e9f04096f08b9872fd64b, type: 3}
       propertyPath: _magazineSize
       value: 20
