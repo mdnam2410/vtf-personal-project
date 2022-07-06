@@ -10,11 +10,9 @@ public class ZombieManager : MonoBehaviour
     private Transform _spawningPlane;
     [SerializeField]
     private int _maxZombies;
-    [SerializeField]
-    private int _initialNumOfZombies;
     
     private Queue<GameObject> _unusedZombies = new Queue<GameObject>();
-    private Queue<GameObject> _aliveZombies = new Queue<GameObject>();
+    private List<GameObject> _aliveZombies = new List<GameObject>();
     private Queue<GameObject> _deadZombies = new Queue<GameObject>();
 
     private void Start()
@@ -33,9 +31,9 @@ public class ZombieManager : MonoBehaviour
 
     private void CreateNewZombie()
     {
-        //var zombie = Instantiate(_zombiePrefab[0], GetRandomPosition(), Quaternion.Euler(Vector3.zero));
-        var zombie = Instantiate(_zombiePrefab[0], GetRandomPosition(), Quaternion.Euler(Vector3.zero));
+        var zombie = Instantiate(_zombiePrefab[0], GetRandomPosition(), GetRandomRotation());
         zombie.SetActive(false);
+        zombie.GetComponent<HP>().OnDeathWithGameObject.AddListener(OnZombieDies);
         _unusedZombies.Enqueue(zombie);
     }
 
@@ -46,9 +44,14 @@ public class ZombieManager : MonoBehaviour
         float z = _spawningPlane.position.z;
 
         float randomX = Random.Range(x - _spawningPlane.localScale.x / 2 * 10, x + _spawningPlane.localScale.x / 2 * 10);
-        //float randomY = Random.Range(y - _spawningPlane.localScale.y / 2 * 10, y + _spawningPlane.localScale.y / 2 * 10);
         float randomZ = Random.Range(z - _spawningPlane.localScale.z / 2 * 10, z + _spawningPlane.localScale.z / 2 * 10);
         return new Vector3(randomX, y, randomZ);
+    }
+
+    private Quaternion GetRandomRotation()
+    {
+        float randomY = Random.Range(0, 360);
+        return Quaternion.Euler(new Vector3(0, randomY, 0));
     }
 
     public IEnumerator SpawnZombie()
@@ -58,10 +61,18 @@ public class ZombieManager : MonoBehaviour
             Debug.Log("Spawned zombie");
             var zombie = _unusedZombies.Dequeue();
             zombie.SetActive(true);
-            _aliveZombies.Enqueue(zombie);
+            _aliveZombies.Add(zombie);
             yield return new WaitForSeconds(1f);
             yield return zombie;
         }
         yield break;
+    }
+
+    public void OnZombieDies(GameObject zombie)
+    {
+        Debug.Log($"{zombie.name} dies");
+        _aliveZombies.Remove(zombie);
+        zombie.SetActive(false);
+        _deadZombies.Enqueue(zombie);
     }
 }

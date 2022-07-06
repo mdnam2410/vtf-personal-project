@@ -9,6 +9,12 @@ public class HP : MonoBehaviour
     public int CurrentHP;
 
     public UnityEvent OnDeath;
+    public UnityEvent<GameObject> OnDeathWithGameObject;
+
+    private void OnValidate()
+    {
+        CurrentHP = MaxHP;
+    }
 
     // Return true if there is HP getting reduced
     public bool ReduceHP(int amount)
@@ -19,6 +25,7 @@ public class HP : MonoBehaviour
         if (CurrentHP == 0)
         {
             OnDeath.Invoke();
+            OnDeathWithGameObject.Invoke(gameObject);
         }
         return true;
     }
