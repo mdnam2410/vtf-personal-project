@@ -5456,8 +5456,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.6.5
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!195 &5420195141930130981
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5492,8 +5492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a75dcfb614c5dd42b83b1d14a189434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 50
-  CurrentHP: 50
+  MaxHP: 200
+  CurrentHP: 200
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -5509,6 +5509,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDeathWithGameObject:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5420195141930130983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5566,8 +5569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _behaviorTree: {fileID: 5420195141930130980}
-  _targets:
-  - {fileID: 0}
+  _animator: {fileID: 5420195143079325881}
 --- !u!114 &5420195141930130987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5580,7 +5582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49e870f3feac7745af3f2d20f735c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 25
 --- !u!1 &5420195143072014989
 GameObject:
   m_ObjectHideFlags: 0
