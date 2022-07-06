@@ -28,11 +28,7 @@ public class ZombieAI : MonoBehaviour
         _speed = _behaviorTree.GetVariable("Speed") as SharedFloat;
         _fieldOfView = _behaviorTree.GetVariable("FieldOfView") as SharedFloat;
         _targets = _behaviorTree.GetVariable("Targets") as SharedGameObjectList;
-
-        _speed.Value = 1;
-        _fieldOfView.Value = 90;
         _targets.Value = FindTargets();
-
         _behaviorTree.EnableBehavior();
     }
 
