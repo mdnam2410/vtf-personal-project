@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AdditiveSceneLoader : MonoBehaviour
+public class SceneLoader : MonoSingleton<SceneLoader>
 {
     [SerializeField]
     private GameObject _playButton;
@@ -17,11 +17,6 @@ public class AdditiveSceneLoader : MonoBehaviour
     [SerializeField]
     private GameObject _cancelButton;
 
-    private void OnValidate()
-    {
-        //_backButton = _pausePanel.GetComponentInChildren<Button>();
-    }
-
     private void Start()
     {
         _playButton.GetComponent<Button>().onClick.AddListener(LoadMainScene);
@@ -32,7 +27,7 @@ public class AdditiveSceneLoader : MonoBehaviour
 
     private void LoadMainScene()
     {
-        SceneManager.LoadScene("Main", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Main");
         _playButton.SetActive(false);
         _pauseButton.SetActive(true);
         Time.timeScale = 1;
@@ -40,8 +35,7 @@ public class AdditiveSceneLoader : MonoBehaviour
 
     private void BackToMainMenu()
     {
-        SceneManager.UnloadSceneAsync("Main");
-        //SceneManager.LoadScene("Welcome", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Main");
         _playButton.SetActive(true);
         _pausePanel.SetActive(false);
         _pauseButton.SetActive(false);
@@ -61,18 +55,5 @@ public class AdditiveSceneLoader : MonoBehaviour
         _pauseButton.SetActive(false);
         Time.timeScale = 1;
         FindObjectOfType<FPSMouseController>().enabled = true;
-    }
-
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    _pausePanel.SetActive(!_pausePanel.activeInHierarchy);
-        //    Cursor.lockState = _pausePanel.activeInHierarchy ? CursorLockMode.None : CursorLockMode.Locked;
-        //    Time.timeScale = _pausePanel.activeInHierarchy ? 0 : 1;
-        //    FindObjectOfType<FPSMouseController>().enabled = !_pausePanel.activeInHierarchy;
-        //}
-
-        //Input.GetA
     }
 }
