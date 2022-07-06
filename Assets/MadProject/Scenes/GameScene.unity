@@ -2923,7 +2923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aimingCamera: {fileID: 25098291}
   _hitEffectPrefab: {fileID: 0}
-  _damage: 10
+  _damage: 15
 --- !u!114 &244220363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5921,7 +5921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aimingCamera: {fileID: 25098291}
   _hitEffectPrefab: {fileID: 0}
-  _damage: 10
+  _damage: 20
 --- !u!1001 &477973652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13949,7 +13949,7 @@ MonoBehaviour:
   _zombiePrefab:
   - {fileID: 5420195143072013937, guid: 55a21cc2674835d46a2cea1790ac7efc, type: 3}
   _spawningPlane: {fileID: 999595628}
-  _maxZombies: 2
+  _maxZombies: 10
 --- !u!4 &1056738152
 Transform:
   m_ObjectHideFlags: 0
